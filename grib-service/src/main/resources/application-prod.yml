@@ -1,0 +1,23 @@
+server:
+  port: 8830
+  compression:
+    enabled: false
+    min-response-size: 2048
+    mime-types: application/json
+
+spring:
+  application:
+    name: grib-service
+  data:
+    mongodb:
+      host: 192.168.201.57
+      port: 27017
+      database: zgssWeather
+      username: zgss
+      password: zgss
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.201.57:8761/eureka/
+

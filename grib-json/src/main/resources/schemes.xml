@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemes>
+    <!-- 风 -->
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="10000"></scheme>
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="20000"></scheme>
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="30000"></scheme>
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="50000"></scheme>
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="70000"></scheme>
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="85000"></scheme>
+    <scheme subject="Component_of_wind" fc="2" fp="wind" fs="100" fv="100000"></scheme>
+    <!--&lt;!&ndash; 温度 &ndash;&gt;-->
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="10000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="20000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="30000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="50000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="70000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="85000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="100000"></scheme>
+    <!--&lt;!&ndash; 位势高度 &ndash;&gt;-->
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="10000"></scheme>
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="20000"></scheme>
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="30000"></scheme>
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="50000"></scheme>
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="70000"></scheme>
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="85000"></scheme>
+    <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="100000"></scheme>
+    <!-- 冰水混合比 -->
+    <!-- 可降水量 -->
+    <scheme subject="Total_precipitation" fc="1" fp="8" fs="1" fv="0"></scheme>
+    <!-- 相对湿度 -->
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="10000"></scheme>
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="20000"></scheme>
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="30000"></scheme>
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="50000"></scheme>
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="70000"></scheme>
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="85000"></scheme>
+    <scheme subject="Relative_humidity" fc="1" fp="1" fs="100" fv="100000"></scheme>
+    <!-- 总云量 -->
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="10000"></scheme>
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="20000"></scheme>
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="30000"></scheme>
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="50000"></scheme>
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="70000"></scheme>
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="85000"></scheme>
+    <scheme subject="Total_cloud_cover" fc="6" fp="1" fs="100" fv="100000"></scheme>
+    <!-- 能见度 -->
+    <scheme subject="Visibility" fc="19" fp="0" fs="1" fv="0"></scheme>
+    <!-- 垂直风 -->
+    <scheme subject="Vertical_velocity" fc="2" fp="9" fs="100" fv="100000"></scheme>
+    <!-- 阵风 -->
+    <scheme subject="Wind_speed_gust" fc="2" fp="22" fs="1" fv="0"></scheme>
+</schemes>

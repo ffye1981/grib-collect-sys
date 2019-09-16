@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tasks>
+    <!-- 温度 -->
+    <task subject="Temperature" variable="var_TMP" level="100">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Temperature" variable="var_TMP" level="200">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Temperature" variable="var_TMP" level="300">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Temperature" variable="var_TMP" level="500">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Temperature" variable="var_TMP" level="700">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Temperature" variable="var_TMP" level="850">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Temperature" variable="var_TMP" level="1000">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <!-- 风 -->
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="100">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="200">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="300">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="500">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="700">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="850">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+    <task subject="Component_of_wind" variable="var_UGRD|var_VGRD" level="1000">
+        <subregion leftlon="0" rightlon="360" toplat="90" bottomlat="-90"></subregion>
+    </task>
+</tasks>

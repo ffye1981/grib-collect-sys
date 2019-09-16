@@ -1,0 +1,25 @@
+server:
+  port: 8800
+
+spring:
+  application:
+    name: grib-download
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+ftp:
+  host: ftp.ncep.noaa.gov
+  port:
+  username: anonymous
+  passWord: 1
+  root: /pub/data/nccf/com/gfs/prod
+  maxTotal: 20
+  minIdel: 1
+  maxIdle: 8
+  maxWaitMillis: 3000
+
+localDir: E:\资料\紫光陕数\气象项目\通用项目\数据库
+

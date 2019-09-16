@@ -1,0 +1,53 @@
+server:
+  port: 8840
+
+debug: true
+
+spring:
+  application:
+    name: grib-contour
+  datasource:
+    url: jdbc:postgresql://localhost:5432/zgWeather?charSet=utf-8
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,logging
+      initial-size: 8
+      min-idle: 3
+      max-active: 300
+      query-timeout: 6000
+      transaction-query-timeout: 6000
+      remove-abandoned-timeout: 1800
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle:  true
+      test-on-borrow: false
+      test-on-return: false
+      poolPreparedStatements: true    #预缓存
+      maxOpenPreparedStatements: 100    #缓存个数
+  cache:
+    ehcache:
+      config: classpath:/ehcache.xml
+
+mybatis:
+  mapper-locations: classpath:/xml/*.xml
+  type-aliases-package: com.zgss.grib.contour.entity
+  config-location: classpath:mybatis-config.xml
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+activemq:
+  url: failover://tcp://localhost:61616
+  user: admin
+  password: admin
+  queueName: grib_contour
+
+cron:
+  maintain: 0 35 9 * * ?
+
