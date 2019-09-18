@@ -192,4 +192,7 @@
   <update id="dropTable" parameterType="String" >
     drop table  "${tableName}"
   </update>
+  <update id="truncateTable" parameterType="String" >
+    TRUNCATE table  "${tableName}"
+  </update>
 </mapper>

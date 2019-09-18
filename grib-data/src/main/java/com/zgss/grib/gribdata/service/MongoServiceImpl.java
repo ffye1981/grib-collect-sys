@@ -69,16 +69,16 @@ public class MongoServiceImpl{
         String collectionName = GribUtil.getGridName(parameterNumberName,refTime,surface1Value);
         if(!this.mongoTemplate.collectionExists(collectionName)) {
             this.mongoTemplate.createCollection(collectionName);
-            IndexOperations io = this.mongoTemplate.indexOps(collectionName);
-            Index index =new Index();
-            index.on("refTime", Sort.Direction.ASC);
-            index.on("surfaceValue", Sort.Direction.ASC);
-            index.named("refTime_surfaceValue");
-            io.ensureIndex(index);
-            GeospatialIndex gi = new GeospatialIndex("location");
-            gi.typed(GeoSpatialIndexType.GEO_2DSPHERE);
-            gi.named("location");
-            io.ensureIndex(gi);
+//            IndexOperations io = this.mongoTemplate.indexOps(collectionName);
+//            Index index =new Index();
+//            index.on("refTime", Sort.Direction.ASC);
+//            index.on("surfaceValue", Sort.Direction.ASC);
+//            index.named("refTime_surfaceValue");
+//            io.ensureIndex(index);
+//            GeospatialIndex gi = new GeospatialIndex("location");
+//            gi.typed(GeoSpatialIndexType.GEO_2DSPHERE);
+//            gi.named("location");
+//            io.ensureIndex(gi);
         }
         Criteria criteria = Criteria.where("reftime").is(refTime);
         criteria.and("surfacevalue").is(new Integer(surface1Value));

@@ -51,3 +51,6 @@ activemq:
 cron:
   maintain: 0 0 1 * * ?
 
+clip:
+  shp: D:\GIS_JSDJ\GIS_JSDJ.shp
+

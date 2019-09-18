@@ -62,4 +62,5 @@ public interface IBaseService<T,PK> {
     void copyIn(Date refTime, int surface1Value, String streamData);
     List<String> getSubTables();
     void removeSubTable(String tableName);
+    void clearSubTables(String tableName);
 }

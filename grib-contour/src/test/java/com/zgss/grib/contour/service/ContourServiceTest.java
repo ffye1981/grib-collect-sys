@@ -1,12 +1,23 @@
 package com.zgss.grib.contour.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.vividsolutions.jts.geom.Envelope;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.index.strtree.STRtree;
 import com.zgss.grib.contour.entity.Temperature;
 import com.zgss.grib.contour.service.Impl.TemperatureService;
+import org.geotools.data.shapefile.ShapefileDataStore;
+import org.geotools.data.shapefile.ShapefileDataStoreFactory;
+import org.geotools.data.simple.SimpleFeatureCollection;
+import org.geotools.data.simple.SimpleFeatureIterator;
+import org.geotools.data.simple.SimpleFeatureSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.SqlSessionUtils;
+import org.opengis.feature.simple.SimpleFeature;
 import org.postgresql.copy.CopyManager;
 import org.postgresql.core.BaseConnection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +25,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -146,6 +158,34 @@ public class ContourServiceTest {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testShp(){
+        ShapefileDataStoreFactory dataStoreFactory = new ShapefileDataStoreFactory();
+            try {
+                ShapefileDataStore dataStore = (ShapefileDataStore)dataStoreFactory.createDataStore(
+                        new File("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\gadm36_CHN_shp (1)\\gadm36_CHN_0.shp").toURI().toURL());
+                dataStore.setCharset(Charset.forName("GBK"));
+                SimpleFeatureSource featureSource = dataStore.getFeatureSource();
+                SimpleFeatureCollection sfc = featureSource.getFeatures();
+                if (sfc != null) {
+                    SimpleFeatureIterator iterator = sfc.features();
+                    while (iterator.hasNext()) {
+                        SimpleFeature ft = iterator.next();
+                        MultiPolygon multiPolygon = (MultiPolygon)ft.getDefaultGeometry();
+//                    Geometry bound = multiPolygon.getBoundary();
+                        Envelope envelope = multiPolygon.getEnvelopeInternal();
+//                    System.out.println("bound:"+ bound.toString());
+                        System.out.println("envelope-minx:"+ envelope.getMinX());
+                        System.out.println("envelope-maxx:"+ envelope.getMaxX());
+                        System.out.println("envelope-miny:"+ envelope.getMinY());
+                        System.out.println("envelope-maxy:"+ envelope.getMaxY());
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
         }
     }
 }

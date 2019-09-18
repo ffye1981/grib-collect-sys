@@ -139,4 +139,8 @@ public abstract class BaseServiceImpl<T,PK> implements IBaseService<T,PK> {
     public void removeSubTable(String tableName){
         this.mapper.dropTable(tableName);
     }
+
+    public void clearSubTables(String tableName){
+
+    }
 }

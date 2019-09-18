@@ -60,5 +60,6 @@ public interface BaseMapper<T,PK> {
     int existsTable(@Param("tableName") String tableName);
     void createTable(@Param("tableName") String tableName);
     void dropTable(@Param("tableName") String tableName);
+    void truncateTable(@Param("tableName") String tableName);
     List<String> selectSubTables(@Param("tableName") String tableName);
 }

@@ -1,9 +1,11 @@
 package com.zgss.grib.contour.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.vividsolutions.jts.geom.Geometry;
 import com.zgss.grib.common.util.DateUtil;
 import com.zgss.grib.contour.entity.*;
 import com.zgss.grib.contour.service.Impl.*;
+import com.zgss.grib.contour.util.GisUtil;
 import com.zgss.grib.contour.util.WeatherFactory;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.slf4j.Logger;
@@ -29,6 +31,9 @@ import java.util.*;
 @Service
 public class ContourService {
     private Logger logger = LoggerFactory.getLogger(ContourService.class);
+
+    @Autowired
+    ClipPolygonService clipPolygonService;
 
     @Autowired
     Component_of_windService componentOfWindService;
@@ -84,6 +89,10 @@ public class ContourService {
             }else {
                 _CValues = this.legendService.listBreaks(_parameterNumberName);
             }
+//
+//            double[] _CValues = new double[]{
+//                253.15,263.15,273.15,283.15,293.15,303.15,313.15,999
+//        };
 
             if(_CValues == null || _CValues.length == 0) {
                 return;
@@ -233,7 +242,7 @@ public class ContourService {
         }
         return weathers;
     }
-    public static String buildWeatherPolygon(String parameterNumberName, Date refTime,
+    public String buildWeatherPolygon(String parameterNumberName, Date refTime,
                                                  int surface1Value,List<Polygon> cPolygonList){
         StringBuffer data = new StringBuffer();
         try {
@@ -241,17 +250,23 @@ public class ContourService {
                 StringBuffer _data = new StringBuffer(DateUtil.getDateStr(refTime,0) + "\t");
                 _data.append("0\t0\t");
                 _data.append(surface1Value + "\t");
-                _data.append("SRID=4326;POLYGON(");
+                _data.append("SRID=4326;");
+                StringBuffer _wkt = new StringBuffer("POLYGON(");
                 PolyLine pline = pPolygon.OutLine;
-                _data.append(getPolygonWkt(pline.PointList));
+                _wkt.append(getPolygonWkt(pline.PointList));
                 if (pPolygon.HasHoles()) {
                     for (PolyLine cptLine : pPolygon.HoleLines) {
-                        _data.append(getPolygonWkt(cptLine.PointList));
+                        _wkt.append(getPolygonWkt(cptLine.PointList));
                     }
                 }
                 //取消最后一个逗号
-                _data = new StringBuffer(_data.substring(0,_data.length() - 1));
-                _data.append(")\t");
+                _wkt = new StringBuffer(_wkt.substring(0,_wkt.length() - 1));
+                _wkt.append(")");
+//                Geometry _wktGeo = GisUtil.wkt2Geo(_wkt.toString());
+//                Geometry _clipGeo = clipPolygonService.getGeometry().intersection(_wktGeo);
+//                _wkt = new StringBuffer(GisUtil.geo2Wkt(_clipGeo));
+                _data.append(_wkt.toString());
+                _data.append("\t");
                 double hv = pPolygon.HighValue;
                 double lv = pPolygon.LowValue;
                 _data.append(lv + System.getProperty("line.separator"));

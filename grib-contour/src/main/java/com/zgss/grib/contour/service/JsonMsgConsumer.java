@@ -1,5 +1,6 @@
 package com.zgss.grib.contour.service;
 
+import com.vividsolutions.jts.geom.Envelope;
 import com.zgss.grib.common.util.DateUtil;
 import com.zgss.grib.common.util.FileUtil;
 import com.zgss.grib.contour.util.ArrayUtil;
@@ -27,6 +28,9 @@ import java.util.List;
 @Component
 public class JsonMsgConsumer {
     private Logger logger = LoggerFactory.getLogger(JsonMsgConsumer.class);
+
+    @Autowired
+    ClipPolygonService clipPolygonService;
 
     @Autowired
     ContourService contourService;
@@ -172,38 +176,74 @@ public class JsonMsgConsumer {
                               double dx,
                               double dy,
                               List<List<JsonNumber>> datas) {
+        double minx = lo1;
+        double maxx = lo2;
+        double miny = la2;
+        double maxy = la1;
+        Envelope envelope = this.clipPolygonService.getEnvelope();
+        if(envelope!=null) {
+            minx = Math.floor(envelope.getMinX());
+            maxx = Math.ceil(envelope.getMaxX());
+            miny = Math.floor(envelope.getMinY());
+            maxy = Math.ceil(envelope.getMaxY());
+//            System.out.println("envelope-minx:"+ envelope.getMinX());
+//            System.out.println("envelope-maxx:"+ envelope.getMaxX());
+//            System.out.println("envelope-miny:"+ envelope.getMinY());
+//            System.out.println("envelope-maxy:"+ envelope.getMaxY());
+        }
 
-        double[] lons = new double[nx];
-        double[] lats = new double[ny];
-        double[][] gridData = new double[ny][nx];
+        int lonSize = new Double((maxx - minx)/dx).intValue() + 1;
+        int latSize = new Double((maxy - miny)/dy).intValue() + 1;
+
+        double[] lons = new double[lonSize];
+        double[] lats = new double[latSize];
+        double[][] gridData = new double[latSize][lonSize];
         double Δλ = lo2 > lo1 ? dx : -dx;
         double Δφ = la2 > la1 ? dy : -dy;
 
+        int ii = 0;
         for(int i = 0; i< nx; i++) {
             double lon = lo1 + i * Δλ;
-//            lon = lon > 180 ? lon - 360: lon;
-            lons[i] = lon;
+            if(!(minx > lon || lon > maxx)) {
+                //lon = lon > 180 ? lon - 360: lon;
+                lons[ii] = lon;
+                ii++;
+            }
         }
 
+        int jj = 0;
         for(int j = 0; j < ny ; j++) {
             double lat = la1 + j * Δφ;
-            lats[j] = lat;
+            if(!(miny > lat || lat > maxy)) {
+                lats[jj] = lat;
+                jj++;
+            }
+
         }
-        int p = 0;
+        int p = ii = jj = 0;
         List weathers = new ArrayList();
         double min =  100000;
         double max =  -100000;
         for(int j = 0; j < ny ; j++) {
+            double lat = la1 + j * Δφ;
+            ii = 0;
             for(int i = 0; i< nx; i++,p++) {
-                double val = 0.d;
-                if(datas.size() == 2) {
-                    val = new BigDecimal(Math.sqrt(Math.pow(datas.get(0).get(p).doubleValue(),2) + Math.pow(datas.get(1).get(p).doubleValue(),2))).setScale(1, RoundingMode.DOWN).doubleValue();
-                }else {
-                    val = datas.get(0).get(p).doubleValue();
+                double lon = lo1 + i * Δλ;
+                if(!(miny > lat || lat > maxy) &&!(minx > lon || lon > maxx)) {
+                    double val = 0.d;
+                    if(datas.size() == 2) {
+                        val = new BigDecimal(Math.sqrt(Math.pow(datas.get(0).get(p).doubleValue(),2) + Math.pow(datas.get(1).get(p).doubleValue(),2))).setScale(1, RoundingMode.DOWN).doubleValue();
+                    }else {
+                        val = datas.get(0).get(p).doubleValue();
+                    }
+                    min = Math.min(min,val);
+                    max = Math.max(max,val);
+                    gridData[jj][ii] = val;
+                    ii++;
                 }
-                min = Math.min(min,val);
-                max = Math.max(max,val);
-                gridData[j][i] = val;
+            }
+            if(!(miny > lat || lat > maxy)) {
+                jj++;
             }
         }
         System.out.println("surface1Value="+ surface1Value+ ",min:" + min + ",max:" + max);
