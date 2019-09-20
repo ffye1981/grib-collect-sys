@@ -1,6 +1,7 @@
 package com.zgss.grib.gribdata.service;
 
 
+import com.vividsolutions.jts.geom.Envelope;
 import com.zgss.grib.common.util.DateUtil;
 import com.zgss.grib.common.util.FileUtil;
 import com.zgss.grib.entity.JsonQueueFile;
@@ -28,6 +29,9 @@ import java.util.List;
 @Component
 public class JsonMsgConsumer {
     private Logger logger = LoggerFactory.getLogger(JsonMsgConsumer.class);
+
+    @Autowired
+    ClipPolygonService clipPolygonService;
 
     @Autowired
     Component_of_windService componentOfWindService;
@@ -149,6 +153,18 @@ public class JsonMsgConsumer {
                           double dx,
                           double dy,
                           List<List<JsonNumber>> datas) {
+        double minx = lo1;
+        double maxx = lo2;
+        double miny = la2;
+        double maxy = la1;
+        Envelope envelope = this.clipPolygonService.getEnvelope();
+        if(envelope!=null) {
+            minx = Math.floor(envelope.getMinX());
+            maxx = Math.ceil(envelope.getMaxX());
+            miny = Math.floor(envelope.getMinY());
+            maxy = Math.ceil(envelope.getMaxY());
+        }
+
         long start = Calendar.getInstance().getTimeInMillis();
         double Δλ = lo2 > lo1 ? dx : -dx;
         double Δφ = la2 > la1 ? dy : -dy;
@@ -164,8 +180,10 @@ public class JsonMsgConsumer {
                 }
                 double lat = la1 + j * Δφ;
                 double lon = lo1 + i * Δλ;
-                lon = lon > 180 ? lon - 360: lon;
-                weathers.add(WeatherFactory.buildWeather(refTime,surface1Value,lon,lat,val));
+                if(!(miny > lat || lat > maxy) &&!(minx > lon || lon > maxx)) {
+                    lon = lon > 180 ? lon - 360: lon;
+                    weathers.add(WeatherFactory.buildWeather(refTime,surface1Value,lon,lat,val));
+                }
             }
         }
         long computer_cost = (Calendar.getInstance().getTimeInMillis() - start);

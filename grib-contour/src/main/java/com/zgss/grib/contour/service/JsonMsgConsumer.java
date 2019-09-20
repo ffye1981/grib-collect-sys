@@ -53,7 +53,7 @@ public class JsonMsgConsumer {
             // 使用手动签收模式，需要手动的调用，如果不在catch中调用session.recover()消息只会在重启服务后重发
             msg.acknowledge();
         } catch (Exception e) {
-            logger.info("grib_contour-Queue error：：path=" +jsonPath + e.getLocalizedMessage());
+            logger.info("grib_contour-Queue error：：path=" +jsonPath + e.getMessage());
             e.printStackTrace();
             // 消息处理失败后的重发
             session.recover();

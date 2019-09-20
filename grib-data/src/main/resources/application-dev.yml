@@ -54,3 +54,6 @@ activemq:
 
 cron:
   maintain: 0 35 9 * * ?
+
+clip:
+  shp: E:\资料\紫光陕数\气象项目\通用项目\数据库\gadm36_CHN_shp\gadm36_CHN_0.shp

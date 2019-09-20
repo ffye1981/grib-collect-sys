@@ -23,7 +23,6 @@ public class CrossDomainFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)servletResponse;
         HttpServletRequest requ = (HttpServletRequest)servletRequest;
         String distcode = requ.getHeader("distcode");
-        System.out.println("distcode in cross:"+ distcode);
 
         resp.addHeader("Access-Control-Allow-Origin", "*");
         // Authorization 参数用于支持token

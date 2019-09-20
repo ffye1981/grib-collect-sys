@@ -2,6 +2,7 @@ package com.zgss.grib.contour.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.TopologyException;
 import com.zgss.grib.common.util.DateUtil;
 import com.zgss.grib.contour.entity.*;
 import com.zgss.grib.contour.service.Impl.*;
@@ -12,11 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wContour.Contour;
-import wContour.Global.Border;
-import wContour.Global.PointD;
-import wContour.Global.PolyLine;
-import wContour.Global.Polygon;
+import wcontour.Contour;
+import wcontour.global.Border;
+import wcontour.global.PointD;
+import wcontour.global.PolyLine;
+import wcontour.global.Polygon;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.*;
@@ -247,11 +248,7 @@ public class ContourService {
         StringBuffer data = new StringBuffer();
         try {
             for (Polygon pPolygon : cPolygonList) {
-                StringBuffer _data = new StringBuffer(DateUtil.getDateStr(refTime,0) + "\t");
-                _data.append("0\t0\t");
-                _data.append(surface1Value + "\t");
-                _data.append("SRID=4326;");
-                StringBuffer _wkt = new StringBuffer("POLYGON(");
+                StringBuffer _wkt = new StringBuffer("MULTIPOLYGON((");
                 PolyLine pline = pPolygon.OutLine;
                 _wkt.append(getPolygonWkt(pline.PointList));
                 if (pPolygon.HasHoles()) {
@@ -261,10 +258,18 @@ public class ContourService {
                 }
                 //取消最后一个逗号
                 _wkt = new StringBuffer(_wkt.substring(0,_wkt.length() - 1));
-                _wkt.append(")");
+                _wkt.append("))");
 //                Geometry _wktGeo = GisUtil.wkt2Geo(_wkt.toString());
-//                Geometry _clipGeo = clipPolygonService.getGeometry().intersection(_wktGeo);
-//                _wkt = new StringBuffer(GisUtil.geo2Wkt(_clipGeo));
+//                try {
+//                    _wktGeo = this.clipPolygonService.getGeometry().intersection(_wktGeo);
+//                    _wkt = new StringBuffer(GisUtil.geo2Wkt(_wktGeo));
+//                }catch (TopologyException e){
+//                    System.out.println("裁剪出错:" + _wkt.toString());
+//                }
+                StringBuffer _data = new StringBuffer(DateUtil.getDateStr(refTime,0) + "\t");
+                _data.append("0\t0\t");
+                _data.append(surface1Value + "\t");
+                _data.append("SRID=4326;");
                 _data.append(_wkt.toString());
                 _data.append("\t");
                 double hv = pPolygon.HighValue;
@@ -278,20 +283,30 @@ public class ContourService {
         }
         return data.toString();
     }
-    public static String buildWeatherPolyLine(String parameterNumberName, Date refTime,
+    public String buildWeatherPolyLine(String parameterNumberName, Date refTime,
                                              int surface1Value,List<PolyLine> cPolylineList){
         StringBuffer data = new StringBuffer();
         try {
             for (PolyLine pPolyline : cPolylineList) {
+                StringBuffer _wkt = new StringBuffer("MULTILINESTRING(");
+                _wkt.append(getPolygonWkt(pPolyline.PointList));
+                //取消最后一个逗号
+                _wkt = new StringBuffer(_wkt.substring(0,_wkt.length() - 1));
+                _wkt.append(")");
+                Geometry _wktGeo = GisUtil.wkt2Geo(_wkt.toString());
+                try {
+                    _wktGeo = this.clipPolygonService.getGeometry().intersection(_wktGeo);
+                    _wkt = new StringBuffer(GisUtil.geo2Wkt(_wktGeo));
+                }catch (TopologyException e){
+                    System.out.println("裁剪出错:" + _wkt.toString());
+                }
                 StringBuffer _data = new StringBuffer(DateUtil.getDateStr(refTime,0) + "\t");
                 _data.append("0\t0\t");
                 _data.append(surface1Value + "\t");
-                _data.append("SRID=4326;LINESTRING");
-                _data.append(getPolygonWkt(pPolyline.PointList));
-                //取消最后一个逗号
-                _data = new StringBuffer(_data.substring(0,_data.length() - 1));
+                _data.append("SRID=4326;");
+                _data.append(_wkt.toString());
                 System.out.println(_data.toString());
-                _data.append("\t");
+                _data.append(")\t");
                 double lv = pPolyline.Value;
                 _data.append(lv + System.getProperty("line.separator"));
                 data.append(_data);

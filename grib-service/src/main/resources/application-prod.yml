@@ -8,6 +8,28 @@ server:
 spring:
   application:
     name: grib-service
+  datasource:
+    url: jdbc:postgresql://192.168.201.50:5432/zgWeather?charSet=utf-8
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,logging
+      initial-size: 8
+      min-idle: 3
+      max-active: 300
+      query-timeout: 6000
+      transaction-query-timeout: 6000
+      remove-abandoned-timeout: 1800
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle:  true
+      test-on-borrow: false
+      test-on-return: false
+      poolPreparedStatements: true    #预缓存
+      maxOpenPreparedStatements: 100    #缓存个数
   data:
     mongodb:
       host: 192.168.201.57
@@ -15,6 +37,11 @@ spring:
       database: zgssWeather
       username: zgss
       password: zgss
+
+mybatis:
+  mapper-locations: classpath:/xml/*.xml
+  type-aliases-package: com.zgss.grib.service.entity
+  config-location: classpath:mybatis-config.xml
 
 eureka:
   client:

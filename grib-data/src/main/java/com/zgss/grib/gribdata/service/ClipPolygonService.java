@@ -1,4 +1,4 @@
-package com.zgss.grib.contour.service;
+package com.zgss.grib.gribdata.service;
 
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;

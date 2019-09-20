@@ -52,5 +52,5 @@ cron:
   maintain: 0 0 1 * * ?
 
 clip:
-  shp: D:\GIS_JSDJ\GIS_JSDJ.shp
+  shp: /home/zgss/pub/ffye/clipShp/gadm36_CHN_0.shp
 
