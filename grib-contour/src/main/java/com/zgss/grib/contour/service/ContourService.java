@@ -2,6 +2,7 @@ package com.zgss.grib.contour.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.TopologyException;
 import com.zgss.grib.common.util.DateUtil;
 import com.zgss.grib.contour.entity.*;
@@ -217,7 +218,7 @@ public class ContourService {
         }
         return weathers;
     }
-    public static List<Map> buildWeatherPolyLine(List<PolyLine> cPolylineList){
+    public List<Map> buildWeatherPolyLine(List<PolyLine> cPolylineList){
         List<Map> weathers = new ArrayList<Map>();
         try {
             for (PolyLine pPolyline : cPolylineList) {
@@ -257,14 +258,27 @@ public class ContourService {
                     }
                 }
                 //取消最后一个逗号
-                _wkt = new StringBuffer(_wkt.substring(0,_wkt.length() - 1));
+                if(_wkt.toString().endsWith(",")) {
+                    _wkt = new StringBuffer(_wkt.substring(0,_wkt.length() - 1));
+                }
                 _wkt.append("))");
 //                Geometry _wktGeo = GisUtil.wkt2Geo(_wkt.toString());
+//                if(_wktGeo == null) continue;
 //                try {
 //                    _wktGeo = this.clipPolygonService.getGeometry().intersection(_wktGeo);
+//                    if(_wktGeo.isEmpty()) {
+//                        continue;
+//                    }
+//                    if(_wktGeo.getGeometryType().equals("Polygon")){
+//                        com.vividsolutions.jts.geom.Polygon polygon = (com.vividsolutions.jts.geom.Polygon) _wktGeo;
+//                        _wktGeo = GisUtil.polygonToMultiPolygon(new com.vividsolutions.jts.geom.Polygon[]{
+//                                polygon
+//                        });
+//                    }
 //                    _wkt = new StringBuffer(GisUtil.geo2Wkt(_wktGeo));
 //                }catch (TopologyException e){
-//                    System.out.println("裁剪出错:" + _wkt.toString());
+//                    e.printStackTrace();
+//                    System.out.println("裁剪出错:" + parameterNumberName + surface1Value);
 //                }
                 StringBuffer _data = new StringBuffer(DateUtil.getDateStr(refTime,0) + "\t");
                 _data.append("0\t0\t");
@@ -278,6 +292,7 @@ public class ContourService {
                 data.append(_data);
             }
         } catch (Exception e) {
+            System.out.println("构造出错:" + parameterNumberName + surface1Value);
             e.printStackTrace();
             return data.toString();
         }
@@ -298,7 +313,7 @@ public class ContourService {
                     _wktGeo = this.clipPolygonService.getGeometry().intersection(_wktGeo);
                     _wkt = new StringBuffer(GisUtil.geo2Wkt(_wktGeo));
                 }catch (TopologyException e){
-                    System.out.println("裁剪出错:" + _wkt.toString());
+                    logger.info("裁剪出错:" + _wkt.toString());
                 }
                 StringBuffer _data = new StringBuffer(DateUtil.getDateStr(refTime,0) + "\t");
                 _data.append("0\t0\t");
@@ -317,7 +332,7 @@ public class ContourService {
         }
         return data.toString();
     }
-    public static String getPolygonWkt(List<PointD> pList) {
+    public String getPolygonWkt(List<PointD> pList) {
         StringBuffer _wkt = new StringBuffer();
 
         if(pList!=null && pList.size()> 0) {
