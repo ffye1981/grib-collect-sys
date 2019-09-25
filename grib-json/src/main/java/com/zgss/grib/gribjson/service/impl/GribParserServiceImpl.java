@@ -57,7 +57,7 @@ public class GribParserServiceImpl implements IGribParseService {
             return;
         }
         FileUtil.makeDirectory(jsonStore);
-        String[] files = FileUtil.listNames(dataStore,"gfs.t12z.pgrb2.1p00");
+        String[] files = FileUtil.listNames(dataStore,"gfs.t12z.pgrb2");
         List<Scheme> schemes = this.schemeManager.getSchemes();
         String gribName,jsonName,args;
         boolean error = false;

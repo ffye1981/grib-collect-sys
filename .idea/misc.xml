@@ -7,7 +7,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/grib-download/pom.xml" />
         <option value="$PROJECT_DIR$/grib-json/pom.xml" />
-        <option value="$PROJECT_DIR$/grib-data/pom.xml" />
         <option value="$PROJECT_DIR$/grib-service/pom.xml" />
       </list>
     </option>
