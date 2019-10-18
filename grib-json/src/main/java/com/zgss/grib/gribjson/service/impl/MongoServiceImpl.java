@@ -49,7 +49,7 @@ public class MongoServiceImpl implements IMongoService {
     public void insertJsonFile(String jsonPath,String subject) {
         String jsonString = FileUtil.readFile(jsonPath);
         JsonArray jArray = Json.createReader(new StringReader(jsonString)).readArray();
-        for(int i=0;i< jArray.size();i++) {
+        for(int i=0;i< 1;i++) {
             JsonObject _json = jArray.getJsonObject(i);
             String collectionName = _json.getJsonObject("header").getString("parameterNumberName");
             JsonNumber surface1Value = _json.getJsonObject("header").getJsonNumber("surface1Value");
