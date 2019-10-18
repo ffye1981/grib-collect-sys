@@ -49,7 +49,7 @@ activemq:
   queueName: grib_contour
 
 cron:
-  maintain: 0 35 9 * * ?
+  maintain: 0 28 10 * * ?
 
 clip:
   shp: E:\gadm36_CHN_shp (1)\china_simple.shp

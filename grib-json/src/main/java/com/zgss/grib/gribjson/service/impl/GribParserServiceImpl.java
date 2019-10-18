@@ -71,7 +71,7 @@ public class GribParserServiceImpl implements IGribParseService {
                     //解析Grib文件位json文件
                     Launcher.main(args.split(" "));
                     //json文件入库
-//                    mongoService.insertJsonFile(jsonName,scheme.getSubject());
+                    mongoService.insertJsonFile(jsonName,scheme.getSubject());
                     //解析json文件为grid格点数据
                     jsonMsgProducer.sendMessage(jsonName);
                     logger.info("girb文件：" + gribName + "解析为："+ jsonName + "完毕。");

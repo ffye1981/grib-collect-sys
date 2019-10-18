@@ -53,7 +53,7 @@ activemq:
   queueName: grib_data
 
 cron:
-  maintain: 0 35 9 * * ?
+  maintain: 0 0 10 * * ?
 
 clip:
   shp: E:\资料\紫光陕数\气象项目\通用项目\数据库\gadm36_CHN_shp\gadm36_CHN_0.shp

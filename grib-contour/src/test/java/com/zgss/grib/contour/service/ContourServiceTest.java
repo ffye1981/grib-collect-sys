@@ -8,6 +8,8 @@ import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.index.strtree.STRtree;
 import com.zgss.grib.contour.entity.Temperature;
 import com.zgss.grib.contour.service.Impl.TemperatureService;
+import org.gdal.gdal.gdal;
+import org.gdal.ogr.ogr;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
 import org.geotools.data.simple.SimpleFeatureCollection;
@@ -32,6 +34,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import static org.junit.Assert.*;
 
@@ -166,7 +169,7 @@ public class ContourServiceTest {
         ShapefileDataStoreFactory dataStoreFactory = new ShapefileDataStoreFactory();
             try {
                 ShapefileDataStore dataStore = (ShapefileDataStore)dataStoreFactory.createDataStore(
-                        new File("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\gadm36_CHN_shp (1)\\gadm36_CHN_0.shp").toURI().toURL());
+                        new File("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\gadm36_CHN_shp\\gadm36_CHN_0.shp").toURI().toURL());
                 dataStore.setCharset(Charset.forName("GBK"));
                 SimpleFeatureSource featureSource = dataStore.getFeatureSource();
                 SimpleFeatureCollection sfc = featureSource.getFeatures();
@@ -187,5 +190,16 @@ public class ContourServiceTest {
             } catch (IOException e) {
                 e.printStackTrace();
         }
+    }
+    @Test
+    public void testGdal(){
+        gdal.AllRegister();
+//        gdal.SetConfigOption("GDAL_FILENAME_IS_UTF8","YES");
+        int count = ogr.GetDriverCount();
+        System.out.println(count);
+        for(int i=0; i<count; i++){
+            System.out.println(ogr.GetDriver(i).GetName());
+        }
+        gdal.GDALDestroyDriverManager();
     }
 }

@@ -48,7 +48,7 @@ public class ClipPolygonService {
                 break;
             }
             logger.info("load：" + this.shp + " success!");
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.info("load：" + this.shp + " failed!");
         }
 
