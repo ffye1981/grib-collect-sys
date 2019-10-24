@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"wind_speed_gust"})
 public class Wind_speed_gustRest {
     private Logger logger = LoggerFactory.getLogger(Wind_speed_gustRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Wind_speed_gustServiceImpl")

@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"total_cloud_cover"})
 public class Total_cloud_coverRest {
     private Logger logger = LoggerFactory.getLogger(Total_cloud_coverRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Total_cloud_coverServiceImpl")

@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"geopotential_height"})
 public class Geopotential_heightRest {
     private Logger logger = LoggerFactory.getLogger(Geopotential_heightRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Geopotential_heightServiceImpl")

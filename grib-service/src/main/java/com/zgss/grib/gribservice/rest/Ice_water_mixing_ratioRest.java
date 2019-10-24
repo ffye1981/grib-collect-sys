@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"ice_water_mixing_ratio"})
 public class Ice_water_mixing_ratioRest {
     private Logger logger = LoggerFactory.getLogger(Ice_water_mixing_ratioRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Ice_water_mixing_ratioServiceImpl")

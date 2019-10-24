@@ -27,7 +27,7 @@ import java.util.*;
 @RequestMapping({"component_of_wind"})
 public class Component_of_windRest {
     private Logger logger = LoggerFactory.getLogger(Component_of_windRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Component_of_windServiceImpl")

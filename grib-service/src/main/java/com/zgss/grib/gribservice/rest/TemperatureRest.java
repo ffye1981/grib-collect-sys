@@ -31,7 +31,7 @@ import java.util.*;
 @RequestMapping({"temperature"})
 public class TemperatureRest {
     private Logger logger = LoggerFactory.getLogger(TemperatureRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("TemperatureServiceImpl")

@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"vertical_velocity"})
 public class Vertical_velocityRest {
     private Logger logger = LoggerFactory.getLogger(Vertical_velocityRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Vertical_velocityServiceImpl")

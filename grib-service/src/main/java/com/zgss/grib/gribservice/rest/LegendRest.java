@@ -29,7 +29,7 @@ import java.util.*;
 @RequestMapping({"temperature"})
 public class LegendRest {
     private Logger logger = LoggerFactory.getLogger(LegendRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("LegendServiceImpl")

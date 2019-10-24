@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"visibility"})
 public class VisibilityRest {
     private Logger logger = LoggerFactory.getLogger(VisibilityRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("VisibilityServiceImpl")

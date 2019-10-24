@@ -30,7 +30,7 @@ import java.util.Map;
 @RequestMapping({"precipitable_water"})
 public class Total_precipitationRest {
     private Logger logger = LoggerFactory.getLogger(Total_precipitationRest.class);
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("Total_precipitationServiceImpl")
