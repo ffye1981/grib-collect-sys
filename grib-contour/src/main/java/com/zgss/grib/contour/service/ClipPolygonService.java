@@ -57,9 +57,11 @@ public class ClipPolygonService {
         return geometry;
     }
     public Envelope getEnvelope() {
-        return geometry.getEnvelopeInternal();
+        if(geometry !=null) {
+            return geometry.getEnvelopeInternal();
+        }else
+            return null;
     }
-
     public String getShp() {
         return shp;
     }

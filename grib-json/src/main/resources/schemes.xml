@@ -16,6 +16,7 @@
     <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="70000"></scheme>
     <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="85000"></scheme>
     <scheme subject="Temperature" fc="0" fp="0" fs="100" fv="100000"></scheme>
+    <scheme subject="Temperature" fc="0" fp="0" fs="1" fv="0"></scheme>
     <!--&lt;!&ndash; 位势高度 &ndash;&gt;-->
     <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="10000"></scheme>
     <scheme subject="Geopotential_height" fc="3" fp="5" fs="100" fv="20000"></scheme>

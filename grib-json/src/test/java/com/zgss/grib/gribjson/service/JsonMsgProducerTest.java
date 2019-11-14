@@ -38,7 +38,7 @@ public class JsonMsgProducerTest {
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190806\\json\\gfs.t12z.pgrb2.0p25.f048_Temperature_100000.json"));
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190806\\json\\gfs.t12z.pgrb2.0p25.f048_Geopotential_height_85000.json"));
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190806\\json\\gfs.t12z.pgrb2.0p25.f048_Geopotential_height_100000.json"));
-//        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190805\\json\\gfs.t12z.pgrb2.1p00.f024_Temperature_100000.json"));
+        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20191031\\json\\gfs.t12z.pgrb2.1p00.f000_Temperature_0.json"));
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190805\\json\\gfs.t12z.pgrb2.1p00.f024_Temperature_100000.json"));
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190805\\json\\gfs.t12z.pgrb2.1p00.f024_Temperature_100000.json"));
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190806\\json\\gfs.t12z.pgrb2.0p25.f048_Temperature_100000.json"));
@@ -48,10 +48,10 @@ public class JsonMsgProducerTest {
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190905\\json\\gfs.t12z.pgrb2.1p00.f000_Total_precipitation_0.json"));
 
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190805\\json\\gfs.t12z.pgrb2.1p00.f024_Visibility_0.json"));
-        for(int i=0;i<5;i++){
-//            jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\study\\listing_activeMQ\\data\\gfs.t12z.pgrb2.1p00.f021_Temperature_100000.json"));
-            jsonMsgProducer.sendMessage("E:\\study\\listing_activeMQ\\data\\gfs.t12z.pgrb2.1p00.f021_Temperature_100000.json");
-        }
+//        for(int i=0;i<5;i++){
+////            jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\study\\listing_activeMQ\\data\\gfs.t12z.pgrb2.1p00.f021_Temperature_100000.json"));
+//            jsonMsgProducer.sendMessage("E:\\study\\listing_activeMQ\\data\\gfs.t12z.pgrb2.1p00.f021_Temperature_100000.json");
+//        }
 
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190911\\json\\gfs.t12z.pgrb2.1p00.f024_Total_cloud_cover_100000.json"));
 //        jsonMsgProducer.sendMessage(new JsonQueueFile("E:\\资料\\紫光陕数\\气象项目\\通用项目\\数据库\\20190805\\json\\gfs.t12z.pgrb2.1p00.f024_Vertical_velocity_100000.json"));

@@ -72,7 +72,7 @@ public class ContourService {
 
 //    private List<LegendItem> legends;
 
-    public void calEquiSurface2(String parameterNumberName, Date refTime,
+    public void ocalEquiSurface2(String parameterNumberName, Date refTime,
                                 int surface1Value, double[][] gridData, double[] lons, double[] lats,
                                 double min,double max) {
         double _undefData = -9999.0;

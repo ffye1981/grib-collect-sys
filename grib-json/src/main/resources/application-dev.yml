@@ -22,7 +22,7 @@ eureka:
 dataRoot: E:\资料\紫光陕数\气象项目\通用项目\数据库
 
 activemq:
-  url: failover://tcp://192.168.103.32:61616
+  url: failover://tcp://localhost:61616
   user: admin
   password: admin
   queueName: grib_data
